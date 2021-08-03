@@ -10,5 +10,10 @@ public class ZhiqianQu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zhiqian_qu);
+
+        /*
+        * This is just a try to submit
+        *
+        * */
     }
 }
