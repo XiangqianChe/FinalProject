@@ -79,7 +79,7 @@ public class FragmentRightOfSoccer extends Fragment {
             toggleBtn = soccerDetailView.findViewById(R.id.soccerSaveNewsBtn);
         }
         if (newsItem != null && newsItem.getId() != SoccerRssItem.INVALID_ID){
-            toggleBtn.setText("remove from saving");//change the name of button into "remove"
+            toggleBtn.setText("remove");//change the name of button into "remove"
         }
 
         toggleBtn.setOnClickListener(clk -> {

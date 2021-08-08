@@ -48,7 +48,7 @@ public class FragmentLeftOfSoccer extends Fragment {
     private SoccerDatabaseHelper database;
     private String title;
     private String link;
-    private String pubDate;
+    private String publicDate;
     private String description;
     private String thumbnail;
     private AlertDialog dialog = null;
@@ -75,10 +75,7 @@ public class FragmentLeftOfSoccer extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // connect to database
         database = new SoccerDatabaseHelper(getContext());
-
-        // waiting until retrieve RSS data from a url
         dialog = new AlertDialog.Builder(getActivity())
                 .setTitle("Getting Soccer Game News")
                 .setMessage("loading")
@@ -112,7 +109,6 @@ public class FragmentLeftOfSoccer extends Fragment {
         exec.execute(() -> {
             // The work thread to retrieving data from RSS url
             try {
-                Log.i("hello", "doInBackground: Im here");
                 String stringURL = "https://www.goal.com/en/feeds/news";
                 URL url = new URL(stringURL);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -143,7 +139,7 @@ public class FragmentLeftOfSoccer extends Fragment {
                         //if the tag is called "pubDate"
                         else if (xpp.getName().equalsIgnoreCase("pubDate")) {
                             if (insideItem) {
-                                pubDate = xpp.nextText();
+                                publicDate = xpp.nextText();
                             }
                         }
                         //if the tag is called "link"
@@ -165,7 +161,7 @@ public class FragmentLeftOfSoccer extends Fragment {
                     }
                     //if we are at an END_TAG and the END_TAG is called "item"
                     else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")) {
-                        itemList.add(new SoccerRssItem(title, link, pubDate, description, thumbnail));
+                        itemList.add(new SoccerRssItem(title, link, publicDate, description, thumbnail));
                         insideItem = false;
                     }
 
