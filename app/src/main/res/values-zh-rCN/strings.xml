@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Final_project</string>
+    <string name="soccer_helper_title">如何使用Soccer Game API</string>
+    <string name="soccer_helper">足球赛事API帮助器</string>
+    <string name="soccer_helper_usage">即将来临</string>
+    <string name="soccer_display_saved_news_button_text">已保存的记录</string>
+    <string name="soccer_save_news_button_text">提交</string>
+    <string name="soccer_open_url_button_text">Open URL</string>
+    <string name="soccer_helper_button_text">确认</string>
+    <string name="soccer_rating_text">请评价我们</string>
+</resources>
