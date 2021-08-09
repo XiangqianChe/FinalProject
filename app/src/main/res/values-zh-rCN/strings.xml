@@ -9,4 +9,6 @@
     <string name="soccer_open_url_button_text">Open URL</string>
     <string name="soccer_helper_button_text">确认</string>
     <string name="soccer_rating_text">请评价我们</string>
+    <string name="open">1</string>
+    <string name="close">0</string>
 </resources>

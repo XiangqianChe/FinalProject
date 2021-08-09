@@ -4,21 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ZhiqianQu">
+    tools:context=".ZhiqianQu"
+    android:orientation="vertical">
 
-    <fragment
-        android:id="@+id/soccerList"
-        android:name="algonquin.cst2335.final_project.FragmentLeftOfSoccer"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        tools:layout="@layout/left_fragment_of_soccer" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="34dp" />
 
-    <fragment android:name = "algonquin.cst2335.final_project.FragmentRightOfSoccer"
-        android:id="@+id/soccerDetail"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        tools:layout="@layout/right_fragment_of_soccer" />
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</LinearLayout >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <fragment
+                android:id="@+id/soccerList"
+                android:name="algonquin.cst2335.final_project.FragmentLeftOfSoccer"
+                android:layout_width="115dp"
+                android:layout_height="match_parent"
+                tools:layout="@layout/left_fragment_of_soccer" />
+
+            <fragment
+                android:id="@+id/soccerDetail"
+                android:name="algonquin.cst2335.final_project.FragmentRightOfSoccer"
+                android:layout_width="276dp"
+                android:layout_height="match_parent"
+                tools:layout="@layout/right_fragment_of_soccer" />
+        </LinearLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/popout_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+
+
+            app:menu="@menu/soccer_top_bar" />
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</LinearLayout>

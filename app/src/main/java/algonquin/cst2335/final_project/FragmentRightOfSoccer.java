@@ -51,7 +51,9 @@ public class FragmentRightOfSoccer extends Fragment {
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
     }
 
     /**
@@ -108,39 +110,13 @@ public class FragmentRightOfSoccer extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-        inflater.inflate(R.menu.soccermenu_item, menu);
+        inflater.inflate(R.menu.soccer_top_bar, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    /**
-     * call the method displaySoccerGameUsage
-     * @param item  Sets the visibility of the menu item
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.soccerHelper:
-                displaySoccerGameUsage();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
-    private void displaySoccerGameUsage() {
-        AlertDialog helperDialog = new AlertDialog.Builder(getContext()).create();
 
-        helperDialog.setTitle(R.string.soccer_helper_title);
-        helperDialog.setMessage(getResources().getString(R.string.soccer_helper_usage));
 
-        helperDialog.setButton(DialogInterface.BUTTON_NEUTRAL, getResources().getString(R.string.soccer_helper_button_text), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        helperDialog.show();//show Alert
-    }
 
     /**
      * show the detail of an item, which include title,url and picture

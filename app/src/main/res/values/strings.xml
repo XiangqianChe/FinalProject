@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Final_project</string>
+    <string name="app_name">Soccer Game</string>
     <string name="soccer_helper_title">How to use Soccer Game</string>
     <string name="soccer_helper">Soccer Game API Helper</string>
     <string name="soccer_helper_usage">Click on the button of "save" can save the item ;
@@ -7,9 +7,11 @@
         click on the "Open url" button can open the browser to see more details;
         click on the bottin "remove" when you see the saved records to delete record
     </string>
-    <string name="soccer_helper_button_text">Confirm</string>
     <string name="soccer_rating_text">please rate us</string>
-    <string name="soccer_open_url_button_text">Open URL</string>
-    <string name="soccer_display_saved_news_button_text">saved records</string>
+    <string name="soccer_open_url_button_text">Open</string>
+
     <string name="soccer_save_news_button_text">Save</string>
+
+    <string name="open">1</string>
+    <string name="close">0</string>
 </resources>

@@ -236,7 +236,7 @@ public class FragmentLeftOfSoccer extends Fragment {
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.soccer_item, parent, false);
+                    .inflate(R.layout.soccer_single_list, parent, false);
             return new ViewHolder(view);
         }
 

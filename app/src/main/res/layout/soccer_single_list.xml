@@ -12,9 +12,9 @@
         android:layout_height="30dp"
         android:background="@color/purple_200"
         android:ellipsize="end"
+        android:maxLines="1"
         android:textAlignment="viewStart"
         android:textColor="@color/black"
-        android:textSize="10dp"
-        android:maxLines="1"/>
+        android:textSize="10dp" />
 
 </LinearLayout>
