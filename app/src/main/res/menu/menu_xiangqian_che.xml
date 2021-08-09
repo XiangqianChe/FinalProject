@@ -3,8 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/help"
-        android:icon="@drawable/help"
+        android:id="@+id/station_help"
+        android:icon="@drawable/station_help"
         android:title="Help"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/station_favorites"
+        android:icon="@drawable/station_favorites"
+        android:title="Favorites"
         app:showAsAction="always" />
 </menu>

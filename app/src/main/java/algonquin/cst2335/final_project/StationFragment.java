@@ -39,6 +39,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
@@ -54,8 +55,10 @@ public class StationFragment extends Fragment {
     Button btn_search;
     RecyclerView rv_station;
     ArrayList<StationInfo> infos = new ArrayList<>();
+    ArrayList<StationFragment.StationInfo> infos_favorites = new ArrayList<>();
     StationAdapter adapter;
-    OpenHelper opener;
+    StationAdapter adapter_favorites;
+//    OpenHelper opener;
     SQLiteDatabase db;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -80,35 +83,37 @@ public class StationFragment extends Fragment {
         et_long.setText(sp_long);
 
         /**
-         * database to hold history search records
+         * database to hold favorites
          */
-        opener = new OpenHelper(getContext());
+
+        OpenHelper opener = new OpenHelper(getContext());
         db = opener.getWritableDatabase();
-        Cursor results = db.rawQuery("select * from " + OpenHelper.TABLE_NAME + ";", null);
-        int _idCol = results.getColumnIndex("_id");
-        int titleCol = results.getColumnIndex(OpenHelper.col_title);
-        int latCol = results.getColumnIndex(OpenHelper.col_lat);
-        int longCol = results.getColumnIndex(OpenHelper.col_long);
-        int telCol = results.getColumnIndex(OpenHelper.col_tel);
-        while(results.moveToNext()) {
-            long id = results.getInt(_idCol);
-            String r_title = results.getString(titleCol);
-            String r_lat = results.getString(latCol);
-            String r_long = results.getString(longCol);
-            String r_tel = results.getString(telCol);
-            infos.add(new StationInfo(id, r_title, r_lat, r_long, r_tel));
-        }
+//        Cursor results = db.rawQuery("select * from " + OpenHelper.TABLE_NAME + ";", null);
+//        int _idCol = results.getColumnIndex("_id");
+//        int titleCol = results.getColumnIndex(OpenHelper.col_title);
+//        int latCol = results.getColumnIndex(OpenHelper.col_lat);
+//        int longCol = results.getColumnIndex(OpenHelper.col_long);
+//        int telCol = results.getColumnIndex(OpenHelper.col_tel);
+//        while(results.moveToNext()) {
+//            long id = results.getInt(_idCol);
+//            String r_title = results.getString(titleCol);
+//            String r_lat = results.getString(latCol);
+//            String r_long = results.getString(longCol);
+//            String r_tel = results.getString(telCol);
+//            infos.add(new StationInfo(id, r_title, r_lat, r_long, r_tel));
+//        }
         /**
          * put infos into recycler view
          */
-        adapter = new StationAdapter();
-        rv_station.setAdapter(adapter);
+        adapter = new StationAdapter(infos);
+        adapter_favorites = new StationAdapter(infos_favorites);
         rv_station.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
         /**
          * click search button for charging station infos
          */
         btn_search.setOnClickListener(click->{
+            rv_station.setAdapter(adapter);
             Executor newThread = Executors.newSingleThreadExecutor();
             /**
              * display last searched edit texts
@@ -157,13 +162,13 @@ public class StationFragment extends Fragment {
                         String info_tel = ai.getString("ContactTelephone1");
                         StationInfo si = new StationInfo(info_title, info_lat, info_long, info_tel);
 
-                        ContentValues newRow = new ContentValues();
-                        newRow.put(OpenHelper.col_title, si.getTitle());
-                        newRow.put(OpenHelper.col_lat, si.getLat());
-                        newRow.put(OpenHelper.col_long, si.getLong());
-                        newRow.put(OpenHelper.col_tel, si.getTel());
-                        long newId = db.insert(OpenHelper.TABLE_NAME, OpenHelper.col_title, newRow);
-                        si.setId(newId);
+//                        ContentValues newRow = new ContentValues();
+//                        newRow.put(OpenHelper.col_title, si.getTitle());
+//                        newRow.put(OpenHelper.col_lat, si.getLat());
+//                        newRow.put(OpenHelper.col_long, si.getLong());
+//                        newRow.put(OpenHelper.col_tel, si.getTel());
+//                        long newId = db.insert(OpenHelper.TABLE_NAME, OpenHelper.col_title, newRow);
+//                        si.setId(newId);
 
                         infos.add(si);
                     }
@@ -205,28 +210,51 @@ public class StationFragment extends Fragment {
                 })
                 .setPositiveButton("Yes", (dialog, click)->{
                     //position = getAbsoluteAdapterPosition();
-                    StationInfo removedInfo = infos.get(chosenPosition);
-                    infos.remove(chosenPosition);
-                    adapter.notifyItemRemoved(chosenPosition);
-                    db.delete(OpenHelper.TABLE_NAME, "_id=?", new String[] {Long.toString(removedInfo.getId())});
+                    infos_favorites.remove(chosenPosition);
+                    adapter_favorites.notifyItemRemoved(chosenPosition);
+                    db.delete(OpenHelper.TABLE_NAME, "_id=?", new String[] {Long.toString(chosenInfo.getId())});
 
                     /**
                      * snack bar to undo delete
                      */
                     Snackbar.make(btn_search, "You deleted info #" + chosenPosition, Snackbar.LENGTH_LONG)
                             .setAction("Undo", click2->{
-                                infos.add(chosenPosition, removedInfo);
-                                adapter.notifyItemInserted(chosenPosition);
-                                db.execSQL("Insert into " + OpenHelper.TABLE_NAME + " values('"
-                                        + removedInfo.getId() + "','"
-                                        + removedInfo.getTitle() + "','"
-                                        + removedInfo.getLat() + "','"
-                                        + removedInfo.getLong() + "','"
-                                        + removedInfo.getTel() + "');");
+                                infos_favorites.add(chosenPosition, chosenInfo);
+
+                                ContentValues newRow = new ContentValues();
+                                newRow.put("_id", chosenInfo.getId());
+                                newRow.put(OpenHelper.col_title, chosenInfo.getTitle());
+                                newRow.put(OpenHelper.col_lat, chosenInfo.getLat());
+                                newRow.put(OpenHelper.col_long, chosenInfo.getLong());
+                                newRow.put(OpenHelper.col_tel, chosenInfo.getTel());
+                                db.insert(OpenHelper.TABLE_NAME, null, newRow);
+
+                                adapter_favorites.notifyItemInserted(chosenPosition);
                             })
                             .show();
                 })
                 .create().show();
+    }
+
+    public void notifyConvertToFavorite() {
+        infos_favorites.clear();
+        Cursor results = db.rawQuery("select * from " + OpenHelper.TABLE_NAME + ";", null);
+        int _idCol = results.getColumnIndex("_id");
+        int titleCol = results.getColumnIndex(OpenHelper.col_title);
+        int latCol = results.getColumnIndex(OpenHelper.col_lat);
+        int longCol = results.getColumnIndex(OpenHelper.col_long);
+        int telCol = results.getColumnIndex(OpenHelper.col_tel);
+        while(results.moveToNext()) {
+            long id = results.getInt(_idCol);
+            String r_title = results.getString(titleCol);
+            String r_lat = results.getString(latCol);
+            String r_long = results.getString(longCol);
+            String r_tel = results.getString(telCol);
+            infos_favorites.add(new StationInfo(id, r_title, r_lat, r_long, r_tel));
+        }
+
+        rv_station.setAdapter(adapter_favorites);
+
     }
 
     /**
@@ -238,8 +266,9 @@ public class StationFragment extends Fragment {
 
         int position = -1;
 
-        public RowView(View itemView) {
+        public RowView(View itemView, List<StationInfo> infos) {
             super(itemView);
+
             itemView.setOnClickListener(click->{
                 XiangqianChe parentActivity = (XiangqianChe)getContext();
                 int position = getAbsoluteAdapterPosition();
@@ -257,12 +286,17 @@ public class StationFragment extends Fragment {
     /**
      * container to hold rows of recycler view
      */
-    private class StationAdapter extends RecyclerView.Adapter<RowView> {
+    class StationAdapter extends RecyclerView.Adapter<RowView> {
+        List<StationInfo> infos;
+        StationAdapter(List<StationInfo> infos){
+            this.infos=infos;
+        }
+
         @Override
         public RowView onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = getLayoutInflater();
             View loadedRow = inflater.inflate(R.layout.station_info, parent, false);
-            return new RowView(loadedRow);
+            return new RowView(loadedRow, infos);
         }
 
         @Override
@@ -285,7 +319,7 @@ public class StationFragment extends Fragment {
     /**
      * station info
      */
-    public class StationInfo{
+    class StationInfo{
         long id;
         String title;
         String latitude;
@@ -332,35 +366,5 @@ public class StationFragment extends Fragment {
         }
     }
 
-    /**
-     * create a database
-     */
-    private class OpenHelper extends SQLiteOpenHelper {
 
-        public static final String name = "Database";
-        public static final int version = 1;
-        public static final String TABLE_NAME = "Info";
-        public static final String col_title = "Title";
-        public static final String col_lat = "Latitude";
-        public static final String col_long = "Longitude";
-        public static final String col_tel = "Tel";
-
-        public OpenHelper(Context context) {
-            super(context, name, null, version);
-        }
-
-        @Override
-        public void onCreate(SQLiteDatabase db) {
-            db.execSQL("create table " + TABLE_NAME + "(_id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + col_title + " TEXT,"
-                    + col_lat + " TEXT,"
-                    + col_long + " TEXT,"
-                    + col_tel + " TEXT);");
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            db.execSQL("drop table if exists " + TABLE_NAME);
-        }
-    }
 }
