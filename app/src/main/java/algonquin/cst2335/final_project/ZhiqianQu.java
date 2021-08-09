@@ -6,13 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -26,6 +30,7 @@ public class ZhiqianQu extends AppCompatActivity {
 
     public static final String SOCCERREFERENCES = "SoccerPrefs" ;
     private Button forecastBtn = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +82,9 @@ public class ZhiqianQu extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
+
             case R.id.back:
                 goBack();
                 break;
@@ -88,6 +95,8 @@ public class ZhiqianQu extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+
     /**
      * explaining for how to use it
      */
@@ -95,7 +104,7 @@ public class ZhiqianQu extends AppCompatActivity {
 
         AlertDialog helperDialog = new AlertDialog.Builder(this)
         .setTitle(R.string.soccer_helper_title)
-        .setMessage(getResources().getString(R.string.soccer_helper_usage))
+        .setMessage(getResources().getString(R.string.soccer_usage))
         .setNegativeButton("Close",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();

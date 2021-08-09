@@ -2,10 +2,10 @@
     <string name="app_name">Soccer Game</string>
     <string name="soccer_helper_title">How to use Soccer Game</string>
     <string name="soccer_helper">Soccer Game API Helper</string>
-    <string name="soccer_helper_usage">Click on the button of "save" can save the item ;
-    Click on the button of "saved records" can look through the records that you saved;
-        click on the "Open url" button can open the browser to see more details;
-        click on the bottin "remove" when you see the saved records to delete record
+    <string name="soccer_usage">Click on the button of "save" can save the item ;\n\n
+    Click on the button of "saved records" can look through the records that you saved;\n\n
+        click on the "Open " button can open the browser to see more details;\n\n
+        click on the button "remove" when you see the saved records to delete record
     </string>
     <string name="soccer_rating_text">please rate us</string>
     <string name="soccer_open_url_button_text">Open</string>
