@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/layout/activity_xiangqian_che.xml" value="0.22" />
+        <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/layout/activity_zhe_wang.xml" value="0.1296875" />
+        <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/layout/activity_zhiqian_qu.xml" value="0.1296875" />
+        <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/layout/station_detail_fragment.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/layout/station_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/layout/station_info.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/layout/station_popout_header.xml" value="0.1" />
+        <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/menu/menu_xiangqian_che.xml" value="0.14666666666666667" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
