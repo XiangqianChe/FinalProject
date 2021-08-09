@@ -45,7 +45,7 @@ public class FragmentLeftOfSoccer extends Fragment {
     private View soccerListView = null;
     private RecyclerView recyclerView = null;
     private final List<SoccerRssItem> itemList = new ArrayList<SoccerRssItem>();
-    private SoccerDbHelper database;
+    private SoccerDbHelper db;
     private String title;
     private String link;
     private String publicDate;
@@ -75,7 +75,7 @@ public class FragmentLeftOfSoccer extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        database = new SoccerDbHelper(getContext());
+        db = new SoccerDbHelper(getContext());
         dialog = new AlertDialog.Builder(getActivity())
                 .setTitle("Lording")
                 .setMessage("Please wait")
@@ -169,7 +169,7 @@ public class FragmentLeftOfSoccer extends Fragment {
                     dialog.hide();
                 });
             } catch (IOException | XmlPullParserException ioe) {
-                Log.e("Connection error:", ioe.getMessage());
+                Log.e("failed Connected:", ioe.getMessage());
             }
         });
     }
@@ -180,7 +180,7 @@ public class FragmentLeftOfSoccer extends Fragment {
      * @return true means sucess, false means fail
      */
     private boolean loadDataToAdpter() {
-        Cursor cursor = database.readAllData();
+        Cursor cursor = db.readAllData();
         if (cursor.getCount() != 0) {
             if (!itemList.isEmpty()) {
                 itemList.clear();
@@ -199,7 +199,7 @@ public class FragmentLeftOfSoccer extends Fragment {
             }
             return true;
         } else {
-            Snackbar snackbar = Snackbar.make(getView(), "Not found your favourites in database", Snackbar.LENGTH_SHORT);
+            Snackbar snackbar = Snackbar.make(getView(), "There is nothing be saved", Snackbar.LENGTH_SHORT);
             snackbar.show();
             return false;
         }
@@ -208,9 +208,7 @@ public class FragmentLeftOfSoccer extends Fragment {
     /**
      *  RecyclerView of list.
      */
-    class SoccerItemRecyclerViewAdapter
-            extends RecyclerView.Adapter
-            <SoccerItemRecyclerViewAdapter.ViewHolder> {
+    class SoccerItemRecyclerViewAdapter extends RecyclerView.Adapter<SoccerItemRecyclerViewAdapter.ViewHolder> {
 
         private final List<SoccerRssItem> mValues;
 

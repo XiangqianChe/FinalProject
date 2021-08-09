@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * This class is to represent an object of item tag of RSS XML
+ * This class is used to make an object of xml file(for the item of url)
  *
  * @author Zhiqian Qu
  * @version 1.0
@@ -21,15 +21,11 @@ public class SoccerRssItem implements Parcelable {
     private String pubDate;
     private String description;
     private String thumbnail;
-
     public static final Creator CREATOR = new Creator() {
         public SoccerRssItem createFromParcel(Parcel in) {
-
             return new SoccerRssItem(in);
         }
-
-        public SoccerRssItem[] newArray(int size) {
-
+    public SoccerRssItem[] newArray(int size) {
             return new SoccerRssItem[size];
         }
     };
@@ -69,6 +65,22 @@ public class SoccerRssItem implements Parcelable {
         this.pubDate = pubDate;
         this.description = description;
         this.thumbnail = thumbnail;
+    }
+
+    /**
+     * Constructer
+     *
+     * @param dest is a kind of  Parcel
+     * @param flags is aa kind of int
+     */
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.title);
+        dest.writeString(this.link);
+        dest.writeString(this.pubDate);
+        dest.writeString(this.description);
+        dest.writeString(this.thumbnail);
     }
 
     /**
@@ -128,19 +140,5 @@ public class SoccerRssItem implements Parcelable {
         return 0;
     }
 
-    /**
-     * Constructer
-     *
-     * @param dest is a kind of  Parcel
-     * @param flags is aa kind of int
-     */
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
-        dest.writeString(this.title);
-        dest.writeString(this.link);
-        dest.writeString(this.pubDate);
-        dest.writeString(this.description);
-        dest.writeString(this.thumbnail);
-    }
+
 }

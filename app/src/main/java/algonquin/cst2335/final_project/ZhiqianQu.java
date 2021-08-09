@@ -49,8 +49,8 @@ public class ZhiqianQu extends AppCompatActivity {
         TextView text = (TextView) rankDialog.findViewById(R.id.rank_dialog_text1);
         text.setText(R.string.soccer_rating_text);
 
-        Button submitButton = (Button) rankDialog.findViewById(R.id.rank_dialog_button);
-        submitButton.setOnClickListener(new View.OnClickListener() {
+        Button confirmBtn = (Button) rankDialog.findViewById(R.id.rank_dialog_button);
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor prefsEditor = soccerGamePrefs.edit();
@@ -82,7 +82,7 @@ public class ZhiqianQu extends AppCompatActivity {
                 goBack();
                 break;
             case R.id.soccerHelper:
-                soccerGameUsage();
+                soccerInstruction();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -91,7 +91,7 @@ public class ZhiqianQu extends AppCompatActivity {
     /**
      * explaining for how to use it
      */
-    private void soccerGameUsage() {
+    private void soccerInstruction() {
 
         AlertDialog helperDialog = new AlertDialog.Builder(this)
         .setTitle(R.string.soccer_helper_title)

@@ -27,13 +27,15 @@ import com.squareup.picasso.Picasso;
  */
 
 public class FragmentRightOfSoccer extends Fragment {
-
-    private TextView pubDate;
+    /**
+     * These vorables are used to represents the things show in the right fragment
+     */
+    private TextView publicDate;
     private TextView url;
     private TextView description;
     private ImageView thumbnail;
-    private static SoccerRssItem newsItem;
-    private static Button toggleBtn;
+    private static SoccerRssItem rssItem;
+    private static Button changedBtn;
 
     /**
      * this is a non-argument construction
@@ -43,12 +45,11 @@ public class FragmentRightOfSoccer extends Fragment {
     }
 
     /**
-     * Implement the onCreate interface
+     * onCreate
      * @param savedInstanceState is a kind of Bundle. Bundle used to pass data between Activities
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
 
     }
@@ -61,12 +62,11 @@ public class FragmentRightOfSoccer extends Fragment {
      *
      */
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         // Inflate the layout for this fragment
         View soccerDetailView = inflater.inflate(R.layout.right_fragment_of_soccer, container, false);
-        pubDate = soccerDetailView.findViewById(R.id.soccerRSSPubDate);
+        publicDate = soccerDetailView.findViewById(R.id.soccerRSSPubDate);
         url = soccerDetailView.findViewById(R.id.soccerRSSUrl);
         description = soccerDetailView.findViewById(R.id.soccerRSSDescription);
         thumbnail = soccerDetailView.findViewById(R.id.soccerRSSImage);
@@ -74,25 +74,26 @@ public class FragmentRightOfSoccer extends Fragment {
         Bundle bundle = this.getArguments();
         displayNewsDetail(bundle);
 
-        if(toggleBtn == null) {
-            toggleBtn = soccerDetailView.findViewById(R.id.soccerSaveNewsBtn);
+        if(changedBtn == null) {
+            changedBtn = soccerDetailView.findViewById(R.id.soccerSaveNewsBtn);
         }
-        if (newsItem != null && newsItem.getId() != SoccerRssItem.INVALID_ID){
-            toggleBtn.setText("remove");//change the name of button into "remove"
+        if (rssItem != null && rssItem.getId() != SoccerRssItem.INVALID_ID){
+            changedBtn.setText("remove");//change the name of button into "remove"
         }
 
-        toggleBtn.setOnClickListener(clk -> {
-            if (newsItem.getId() != SoccerRssItem.INVALID_ID){
-                removeItemFromDatabase(newsItem.getId());
+        changedBtn.setOnClickListener(clk -> {
+            if (rssItem.getId() != SoccerRssItem.INVALID_ID){
+                removeItemFromDatabase(rssItem.getId());
             }else{
-                saveItemToDatabase(newsItem);
+                saveItemToDatabase(rssItem);
             }
+
         });
 
         Button urlBtn = soccerDetailView.findViewById(R.id.soccerOpenUrlBtn);// used to open the url in browser
         urlBtn.setOnClickListener(clk -> {
-            if(newsItem != null){
-                Intent browser = new Intent(Intent.ACTION_VIEW, Uri.parse(newsItem.getLink()));
+            if(rssItem != null){
+                Intent browser = new Intent(Intent.ACTION_VIEW, Uri.parse(rssItem.getLink()));
                 startActivity(browser);
             }
         });
@@ -112,20 +113,17 @@ public class FragmentRightOfSoccer extends Fragment {
     }
 
 
-
-
-
     /**
      * the detail of list, which includes title,link and photo
      * @param bundle   is used to passe pass data between Activities
      */
     private void displayNewsDetail(Bundle bundle){
         if (bundle != null) {
-            newsItem = bundle.getParcelable("soccerNews");
-            Picasso.get().load(newsItem.getThumbnail()).into(thumbnail);
-            url.setText("URL: " + newsItem.getLink());
-            pubDate.setText("PubDate: " + newsItem.getPubDate());
-            description.setText("Description: " + newsItem.getDescription());
+            rssItem = bundle.getParcelable("soccerNews");
+            Picasso.get().load(rssItem.getThumbnail()).into(thumbnail);
+            url.setText("URL: " + rssItem.getLink());
+            publicDate.setText("PubDate: " + rssItem.getPubDate());
+            description.setText("Description: " + rssItem.getDescription());
         }
     }
 
@@ -136,8 +134,8 @@ public class FragmentRightOfSoccer extends Fragment {
      */
     private void saveItemToDatabase(SoccerRssItem item){
         if(item.getId() == SoccerRssItem.INVALID_ID){
-            SoccerDbHelper database = new SoccerDbHelper(getContext());
-            database.addItem(newsItem);
+            SoccerDbHelper db = new SoccerDbHelper(getContext());
+            db.addItem(rssItem);
         }
     }
 
@@ -146,7 +144,7 @@ public class FragmentRightOfSoccer extends Fragment {
      * @param id  The id that you should delete
      */
     private void removeItemFromDatabase(int id){
-        SoccerDbHelper database = new SoccerDbHelper(getContext());
-        database.deleteItemById(String.valueOf(id));
+        SoccerDbHelper db = new SoccerDbHelper(getContext());
+        db.deleteItemById(String.valueOf(id));
     }
 }

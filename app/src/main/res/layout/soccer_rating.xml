@@ -14,16 +14,17 @@
         android:layout_gravity="center"/>
 
     <RatingBar
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:id="@+id/dialog_ratingbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:id="@+id/dialog_ratingbar"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:isIndicator="false"
         android:numStars="5"
-        android:stepSize="1.0"
-        android:isIndicator="false"/>
+        android:stepSize="1.0" />
+
 
     <Button
         android:id="@+id/rank_dialog_button"
