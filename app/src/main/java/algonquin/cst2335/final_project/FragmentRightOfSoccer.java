@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 
@@ -37,6 +38,9 @@ public class FragmentRightOfSoccer extends Fragment {
     private static SoccerRssItem rssItem;
     private static Button changedBtn;
 
+    private static Button saveBtn;
+    private RecyclerView leftRecyclerView;
+
     /**
      * this is a non-argument construction
      */
@@ -66,6 +70,10 @@ public class FragmentRightOfSoccer extends Fragment {
         setHasOptionsMenu(true);
         // Inflate the layout for this fragment
         View soccerDetailView = inflater.inflate(R.layout.right_fragment_of_soccer, container, false);
+//        View soccerlistView = inflater.inflate(R.layout.left_fragment_of_soccer, container, false);
+//        leftRecyclerView=soccerlistView.findViewById(R.id.soccerRecyclerView);
+//        saveBtn=soccerlistView.findViewById(R.id.soccerDisplaySavedNewsBtn);
+
         publicDate = soccerDetailView.findViewById(R.id.soccerRSSPubDate);
         url = soccerDetailView.findViewById(R.id.soccerRSSUrl);
         description = soccerDetailView.findViewById(R.id.soccerRSSDescription);
