@@ -45,7 +45,7 @@ public class FragmentLeftOfSoccer extends Fragment {
     private View soccerListView = null;
     private RecyclerView recyclerView = null;
     private final List<SoccerRssItem> itemList = new ArrayList<SoccerRssItem>();
-    private SoccerDatabaseHelper database;
+    private SoccerDbHelper database;
     private String title;
     private String link;
     private String publicDate;
@@ -67,7 +67,7 @@ public class FragmentLeftOfSoccer extends Fragment {
 
     /**
      *
-     * @param inflater LayoutInflater  used to instantiate the contents of layout XML files into their corresponding View objects
+     * @param inflater LayoutInflater used to instantiate the contents of layout XML files into their corresponding View objects
      * @param container ViewGroup is the base class for Layouts in android
      * @param savedInstanceState Bundle used to pass data between Activities
      */
@@ -75,10 +75,10 @@ public class FragmentLeftOfSoccer extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        database = new SoccerDatabaseHelper(getContext());
+        database = new SoccerDbHelper(getContext());
         dialog = new AlertDialog.Builder(getActivity())
-                .setTitle("Getting Soccer Game News")
-                .setMessage("loading")
+                .setTitle("Lording")
+                .setMessage("Please wait")
                 .setView(new ProgressBar(getActivity().getApplicationContext()))
                 .show();
 

@@ -14,7 +14,7 @@ import android.widget.Toast;
  * @version 1.0
  * @since 2021-8-1
  */
-public class SoccerDatabaseHelper extends SQLiteOpenHelper {
+public class SoccerDbHelper extends SQLiteOpenHelper {
     /**
      * These virables will be used to create a table
      */
@@ -33,7 +33,7 @@ public class SoccerDatabaseHelper extends SQLiteOpenHelper {
      * This is a constructor with one parameter
      * @param context
      */
-    SoccerDatabaseHelper(Context context) {
+    SoccerDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }

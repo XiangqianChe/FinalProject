@@ -8,18 +8,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="707dp"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/soccerDisplaySavedNewsBtn"
-            android:layout_width="match_parent"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             app:icon="@drawable/bookmark" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/soccerRecyclerView"
-            android:layout_width="match_parent"
+            android:layout_width="409dp"
             android:layout_height="match_parent"
             android:scrollbars="vertical" />
     </LinearLayout>

@@ -1,18 +1,15 @@
 package algonquin.cst2335.final_project;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -138,7 +135,7 @@ public class FragmentRightOfSoccer extends Fragment {
      */
     private void saveItemToDatabase(SoccerRssItem item){
         if(item.getId() == SoccerRssItem.INVALID_ID){
-            SoccerDatabaseHelper database = new SoccerDatabaseHelper(getContext());
+            SoccerDbHelper database = new SoccerDbHelper(getContext());
             database.addItem(newsItem);
         }
     }
@@ -148,7 +145,7 @@ public class FragmentRightOfSoccer extends Fragment {
      * @param id  The id that you should delete
      */
     private void removeItemFromDatabase(int id){
-        SoccerDatabaseHelper database = new SoccerDatabaseHelper(getContext());
+        SoccerDbHelper database = new SoccerDbHelper(getContext());
         database.deleteItemById(String.valueOf(id));
     }
 }

@@ -1,11 +1,7 @@
 package algonquin.cst2335.final_project;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -17,11 +13,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
-import com.google.android.material.navigation.NavigationView;
 
 
 public class ZhiqianQu extends AppCompatActivity {
@@ -34,25 +27,6 @@ public class ZhiqianQu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         showRatingDialogBox();
-/*
-       Toolbar myToolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, myToolbar, R.string.open, R.string.close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.popout_menu);
-        navigationView.setNavigationItemSelectedListener((item) -> {
-
-            onOptionsItemSelected(item);
-            drawer.closeDrawer(GravityCompat.START);
-            return false;
-        });
-
-
-*/
     }
 
 
@@ -61,7 +35,7 @@ public class ZhiqianQu extends AppCompatActivity {
      */
     public void showRatingDialogBox(){
         Dialog rankDialog = new Dialog(this, R.style.SoccerGameFullHeightDialog);
-        rankDialog.setContentView(R.layout.soccer_rating_dialog);
+        rankDialog.setContentView(R.layout.soccer_rating);
         rankDialog.setCancelable(true);
         RatingBar ratingBar = (RatingBar) rankDialog.findViewById(R.id.dialog_ratingbar);
 
