@@ -20,7 +20,7 @@ import com.squareup.picasso.Picasso;
 
 
 /**
- * Show the detail of a soccer news,which should be the left fragment
+ * extend from Fragment,this class was created for the right of soccer
  * @author Zhiqian
  * @version 1.0
  * @since 2021-8-1
@@ -44,7 +44,7 @@ public class FragmentRightOfSoccer extends Fragment {
 
     /**
      * Implement the onCreate interface
-     * @param savedInstanceState Bundle used to pass data between Activities
+     * @param savedInstanceState is a kind of Bundle. Bundle used to pass data between Activities
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,11 +54,11 @@ public class FragmentRightOfSoccer extends Fragment {
     }
 
     /**
-     * Creates the view for the fragment.
-     * @param inflater  is used to instantiate the contents of layout XML files into their corresponding View objects
-     * @param container  is a view used to contain other views
-     * @param savedInstanceState Bundle used to pass data between Activities
-     * @return View
+     * Create the view of fragment.
+     * @param inflater  is a LayoutInflater type
+     * @param container  is a ViewGroup type
+     * @param savedInstanceState is a Bundle type
+     *
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -101,7 +101,7 @@ public class FragmentRightOfSoccer extends Fragment {
 
     /**
      * onCreateOptionsMenu specify the options menu for an activity
-     * @param menu  Menu
+     * @param menu is the type of Menu
      * @param inflater MenuInflater is used to instantiate menu XML files into Menu objects
      */
     @Override
@@ -116,7 +116,7 @@ public class FragmentRightOfSoccer extends Fragment {
 
 
     /**
-     * show the detail of an item, which include title,url and picture
+     * the detail of list, which includes title,link and photo
      * @param bundle   is used to passe pass data between Activities
      */
     private void displayNewsDetail(Bundle bundle){
@@ -131,7 +131,8 @@ public class FragmentRightOfSoccer extends Fragment {
 
     /**
      * save a new record
-     * @param item   this is the record that you want to save
+     * @param item   this is the record that be saved
+     *
      */
     private void saveItemToDatabase(SoccerRssItem item){
         if(item.getId() == SoccerRssItem.INVALID_ID){

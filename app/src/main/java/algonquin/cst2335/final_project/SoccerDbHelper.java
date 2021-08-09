@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
 /**
- * created database
+ * this file wae ceated for using database. extent from SQLiteOpenHelper
  *
  * @author Zhiqian Qu
  * @version 1.0
@@ -55,10 +55,9 @@ public class SoccerDbHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Drop the soccer table
+     * Drop table
      * @param db  SQLiteDatabase handler
-     * @param newVersion not used
-     * @param oldVersion not used
+     *
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
@@ -67,7 +66,7 @@ public class SoccerDbHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Insert an item into soccer table
+     * Insert into table
      *
      * @param item  SoccerRssItem
      */
@@ -85,12 +84,12 @@ public class SoccerDbHelper extends SQLiteOpenHelper {
         if(result == -1){
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
         }else {
-            Toast.makeText(context, "Added Successfully!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Successfully!", Toast.LENGTH_SHORT).show();
         }
     }
 
     /**
-     * Get datas from soccer table
+     * use query to get data from table
      * @return Cursor read data from it
      */
     Cursor readAllData(){

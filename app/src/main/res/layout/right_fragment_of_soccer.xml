@@ -10,7 +10,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/soccerDetailContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"><![CDATA[
+        tools:src="@tools:sample/avatars" />
+        ]]>
 
         <ImageView
             android:id="@+id/soccerRSSImage"
@@ -21,17 +23,6 @@
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="@+id/soccerRSSDescription"
             app:layout_constraintTop_toBottomOf="@+id/soccerRSSDescription" />
-        tools:src="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/soccerRSSUrl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:textColor="@color/blue"
-            android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/soccerRSSPubDate"
-            app:layout_constraintTop_toBottomOf="@+id/soccerRSSPubDate" />
 
         <TextView
             android:id="@+id/soccerRSSDescription"
@@ -42,6 +33,17 @@
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@+id/soccerRSSUrl"
             app:layout_constraintTop_toBottomOf="@+id/soccerRSSUrl" />
+
+
+        <TextView
+            android:id="@+id/soccerRSSUrl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:textColor="@color/blue"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="@+id/soccerRSSPubDate"
+            app:layout_constraintTop_toBottomOf="@+id/soccerRSSPubDate" />
 
         <TextView
             android:id="@+id/soccerRSSPubDate"
@@ -57,24 +59,22 @@
             android:id="@+id/soccerSaveNewsBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="84dp"
             android:layout_marginBottom="32dp"
             android:text="@string/soccer_save_news_button_text"
             app:icon="@drawable/love"
             app:layout_constraintBottom_toTopOf="@+id/soccerOpenUrlBtn"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/soccerOpenUrlBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginBottom="40dp"
             android:text="@string/soccer_open_url_button_text"
             app:icon="@drawable/link"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.194"
+            app:layout_constraintHorizontal_bias="0.508"
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -96,10 +96,8 @@ public class FragmentLeftOfSoccer extends Fragment {
 
     /**
      * load data from URL
-     *
      * @param view The View returned by onCreateView
-     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous
-     *                           saved state as given here
+     * @param savedInstanceState is a parameter which type is Bundle
      */
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -107,7 +105,6 @@ public class FragmentLeftOfSoccer extends Fragment {
 
         Executor exec = Executors.newSingleThreadExecutor();
         exec.execute(() -> {
-            // The work thread to retrieving data from RSS url
             try {
                 String stringURL = "https://www.goal.com/en/feeds/news";
                 URL url = new URL(stringURL);
@@ -119,33 +116,31 @@ public class FragmentLeftOfSoccer extends Fragment {
                 XmlPullParser xpp = factory.newPullParser();
                 xpp.setInput(in, "UTF-8");
 
-                int eventType = xpp.getEventType(); //loop control variable
+                int eventType = xpp.getEventType();
                 boolean insideItem = false;
 
                 while (eventType != XmlPullParser.END_DOCUMENT) {
                     //if we are at a START_TAG (opening tag)
                     if (eventType == XmlPullParser.START_TAG) {
-                        //if the tag is called "item"
+                        //when the tag is item
                         if (xpp.getName().equalsIgnoreCase("item")) {
                             insideItem = true;
                         }
                         //if the tag is called "title"
                         else if (xpp.getName().equalsIgnoreCase("title")) {
                             if (insideItem) {
-                                // extract the text between <title> and </title>
-                                title = xpp.nextText();
+                                title = xpp.nextText(); // extract the text from title
                             }
                         }
-                        //if the tag is called "pubDate"
+                        //when tag is pubDate"
                         else if (xpp.getName().equalsIgnoreCase("pubDate")) {
                             if (insideItem) {
                                 publicDate = xpp.nextText();
                             }
                         }
-                        //if the tag is called "link"
+                        //when the tag is link
                         else if (xpp.getName().equalsIgnoreCase("link")) {
                             if (insideItem) {
-                                // extract the text between <link> and </link>
                                 link = xpp.nextText();
                             }
                         } else if (xpp.getName().equalsIgnoreCase("description")) {
@@ -154,21 +149,18 @@ public class FragmentLeftOfSoccer extends Fragment {
                             }
                         } else if (xpp.getName().equalsIgnoreCase("media:thumbnail")) {
                             if (insideItem) {
-                                // extract the text between <link> and </link>
                                 thumbnail = xpp.getAttributeValue(null, "url");
                             }
                         }
                     }
-                    //if we are at an END_TAG and the END_TAG is called "item"
                     else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")) {
                         itemList.add(new SoccerRssItem(title, link, publicDate, description, thumbnail));
                         insideItem = false;
                     }
-
-                    eventType = xpp.next(); //move to next element
+                    //move to next one
+                    eventType = xpp.next();
                 }
 
-                // UI thread to display the title list with a recycle view
                 getActivity().runOnUiThread(() -> {
                     recyclerView = soccerListView.findViewById(R.id.soccerRecyclerView);
                     recyclerView.setAdapter(new SoccerItemRecyclerViewAdapter(itemList));
@@ -183,9 +175,9 @@ public class FragmentLeftOfSoccer extends Fragment {
     }
 
     /**
-     * Load data to the list is bound to adapter of recycle view
+     * Load data to the list is a bound to adapter of recycle view
      *
-     * @return successfully load or not
+     * @return true means sucess, false means fail
      */
     private boolean loadDataToAdpter() {
         Cursor cursor = database.readAllData();
@@ -214,7 +206,7 @@ public class FragmentLeftOfSoccer extends Fragment {
     }
 
     /**
-     * The RecyclerView for the RSS news list.
+     *  RecyclerView of list.
      */
     class SoccerItemRecyclerViewAdapter
             extends RecyclerView.Adapter
@@ -227,11 +219,10 @@ public class FragmentLeftOfSoccer extends Fragment {
         }
 
         /**
-         * This method inflates the layout for the RSS list.
-         *
-         * @param parent   ViewGroup into which the new view will be added.
-         * @param viewType The view type of the new View.
-         * @return A new ViewHolder
+         * This method inflates the layout
+         * @param parent is a kind of ViewGroup.
+         * @param viewType is a int.
+         * @return a new view which is  type of ViewHolder
          */
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -241,19 +232,16 @@ public class FragmentLeftOfSoccer extends Fragment {
         }
 
         /**
-         * This method implements a listener with setOnClickListener().
-         * When the user taps a item title, the code uses an bundle to
-         * pass the item is selected to right fragment.
-         *
-         * @param holder   ViewHolder
-         * @param position Position of the item in the array.
+         * when you click ,it passes thebundle to specific fragment
+
+         * @param holder is a kind of ViewHolder
+         * @param position Position of the item in the array,which is a int.
          */
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            // display title list
             holder.mContentView.setText(mValues.get(position).getTitle());
 
-            // pass a details of a  to the right fragment
+            // pass a details of it to the specific fragment
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -279,8 +267,7 @@ public class FragmentLeftOfSoccer extends Fragment {
         }
 
         /**
-         * ViewHolder describes an item view and metadata about its place
-         * within the RecyclerView.
+         * ViewHolder caches views associated with the default Preference layouts.
          */
         class ViewHolder extends RecyclerView.ViewHolder {
             final TextView mContentView;

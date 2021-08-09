@@ -16,11 +16,14 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-
+/**
+ * This file was created for the part of Android. extend from  AppCompatActivity
+ * @author Zhiqian Qu
+ *  * @version 1.0
+ *  * @since 2021-8-1
+ */
 public class ZhiqianQu extends AppCompatActivity {
-    /**
-     * The key of SharedPreferences for the soccer game rating
-     */
+
     public static final String SOCCERREFERENCES = "SoccerPrefs" ;
     private Button forecastBtn = null;
     @Override
@@ -31,7 +34,7 @@ public class ZhiqianQu extends AppCompatActivity {
 
 
     /**
-     * The method shows a rating dialog.
+     *  shows rate dialog.
      */
     public void showRatingDialogBox(){
         Dialog rankDialog = new Dialog(this, R.style.SoccerGameFullHeightDialog);
@@ -69,7 +72,7 @@ public class ZhiqianQu extends AppCompatActivity {
     }
 
     /**
-     * call the method displaySoccerGameUsage
+     * call the method displaySoccerGameUsage and go back.
      * @param item  Sets the visibility of the menu item
      */
     @Override
@@ -85,6 +88,9 @@ public class ZhiqianQu extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * explaining for how to use it
+     */
     private void soccerGameUsage() {
 
         AlertDialog helperDialog = new AlertDialog.Builder(this)
@@ -98,6 +104,9 @@ public class ZhiqianQu extends AppCompatActivity {
         .show();
     }
 
+    /**
+     * chooose if go back
+     */
     private void goBack() {
 
         AlertDialog helperDialog = new AlertDialog.Builder(this)

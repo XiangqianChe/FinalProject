@@ -12,55 +12,35 @@ import android.os.Parcelable;
  */
 public class SoccerRssItem implements Parcelable {
     /**
-     * INVALID_ID to initialize the id of an item
+     * these variables will be used for url
      */
     public static final int INVALID_ID = -1;
-    /**
-     * id is to be used in soccer table
-     */
     private int id;
-    /**
-     * title holds the value of title tag in RSS XML
-     */
     private String title;
-    /**
-     * link holds the value of link tag in RSS XML
-     */
     private String link;
-    /**
-     * pubDate holds the value of pubDate tag in RSS XML
-     */
     private String pubDate;
-    /**
-     * description holds the value of description tag in RSS XML
-     */
     private String description;
-    /**
-     * thumbnail holds the value of thumbnail tag in RSS XML
-     */
     private String thumbnail;
 
-    /**
-     * An instance of Parcelable class
-     */
     public static final Creator CREATOR = new Creator() {
         public SoccerRssItem createFromParcel(Parcel in) {
+
             return new SoccerRssItem(in);
         }
 
         public SoccerRssItem[] newArray(int size) {
+
             return new SoccerRssItem[size];
         }
     };
 
     /**
-     * Non-arg construction
-     *
+     * No-argument constructer
      */
     public SoccerRssItem() { }
 
     /**
-     * Construction with a Parcel parameter
+     * Constructer whose parameter is Parcel
      *
      * @param in  Parcel
      */
@@ -74,7 +54,7 @@ public class SoccerRssItem implements Parcelable {
     }
 
     /**
-     * Construction with five parameters
+     * Construtcer with five parameters
      *
      * @param title String
      * @param link  String
@@ -91,6 +71,10 @@ public class SoccerRssItem implements Parcelable {
         this.thumbnail = thumbnail;
     }
 
+    /**
+     * getter and setter
+     * @return
+     */
     public int getId() {
         return id;
     }
@@ -145,10 +129,10 @@ public class SoccerRssItem implements Parcelable {
     }
 
     /**
-     * Construction with five parameters
+     * Constructer
      *
-     * @param dest Parcel
-     * @param flags int
+     * @param dest is a kind of  Parcel
+     * @param flags is aa kind of int
      */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
