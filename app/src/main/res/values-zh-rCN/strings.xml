@@ -8,5 +8,5 @@
     <string name="close">0</string>
     <string name="soccer_usage">点击保存键可以保存；\\n\\n点击打开键可以打开网页查看更多详情；\\n\\n点击已存记录键可以查看你保存的记录;\\n\\n点击移除键再点击已存文件键即可删掉已存记录</string>
     <string name="soccer_open_url_button_text">打开网页</string>
-    <string name="app_name">足球赛事</string>
+    <string name="app_name">期末项目</string>
 </resources>

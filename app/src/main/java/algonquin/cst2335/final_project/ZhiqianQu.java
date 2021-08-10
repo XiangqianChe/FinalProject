@@ -94,7 +94,6 @@ public class ZhiqianQu extends AppCompatActivity {
                 prefsEditor.commit();
                 rankDialog.dismiss();
                 //this is the place need to be modified
-                setContentView(R.layout.activity_zhiqian_qu);
             }
         });
         rankDialog.show();
