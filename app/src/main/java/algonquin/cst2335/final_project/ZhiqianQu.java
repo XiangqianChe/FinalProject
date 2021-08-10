@@ -42,7 +42,7 @@ public class ZhiqianQu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        showRatingDialogBox();
+        //showRatingDialogBox();
         setContentView(R.layout.activity_zhiqian_qu);
 
         toolbar = findViewById(R.id.soccerToolbar);
@@ -64,7 +64,7 @@ public class ZhiqianQu extends AppCompatActivity {
             return false;
         });
 
-        //showRatingDialogBox();
+        showRatingDialogBox();
 
     }
 
