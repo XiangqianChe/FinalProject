@@ -1,7 +1,11 @@
 package algonquin.cst2335.final_project;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -20,6 +24,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.google.android.material.navigation.NavigationView;
+
 /**
  * This file was created for the part of Android. extend from  AppCompatActivity
  * @author Zhiqian Qu
@@ -30,11 +36,36 @@ public class ZhiqianQu extends AppCompatActivity {
 
     public static final String SOCCERREFERENCES = "SoccerPrefs" ;
     private Button forecastBtn = null;
+    Toolbar toolbar;
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //showRatingDialogBox();
+        setContentView(R.layout.activity_zhiqian_qu);
+
+        toolbar = findViewById(R.id.soccerToolbar);
+        setSupportActionBar(toolbar);
+        ActionBarDrawerToggle toggle;
+        NavigationView navigationView;
+
+        /**
+         * Navigation drawer from start
+         */
+        drawerLayout = findViewById(R.id.drawer_layout_soccer);
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView  = findViewById(R.id.soccer_popout_menu);
+        navigationView.setNavigationItemSelectedListener((item)->{
+            onOptionsItemSelected(item);
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return false;
+        });
+
         showRatingDialogBox();
+
     }
 
 
@@ -65,7 +96,7 @@ public class ZhiqianQu extends AppCompatActivity {
                 setContentView(R.layout.activity_zhiqian_qu);
             }
         });
-        rankDialog.show();
+        //rankDialog.show();
     }
 
 

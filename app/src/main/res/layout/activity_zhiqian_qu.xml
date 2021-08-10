@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer_layout_soccer"
+    >
 <LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,14 +16,9 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/soccerToolbar"
         android:layout_width="match_parent"
         android:layout_height="15dp" />
-
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,17 +40,16 @@
                 tools:layout="@layout/right_fragment_of_soccer" />
         </LinearLayout>
 
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/popout_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-
-            android:layout_gravity="start"
-            android:fitsSystemWindows="true"
-
-
-            app:menu="@menu/soccer_top_bar" />
-
-    </androidx.drawerlayout.widget.DrawerLayout>
 
 </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/soccer_popout_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/soccer_top_bar" />
+
+</androidx.drawerlayout.widget.DrawerLayout>
