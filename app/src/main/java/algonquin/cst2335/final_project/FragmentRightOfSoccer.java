@@ -35,7 +35,7 @@ public class FragmentRightOfSoccer extends Fragment {
     private TextView url;
     private TextView description;
     private ImageView thumbnail;
-    private static SoccerRssItem rssItem;
+    private static SoccerInformation rssItem;
     private static Button changedBtn;
 
     private static Button saveBtn;
@@ -85,12 +85,12 @@ public class FragmentRightOfSoccer extends Fragment {
         if(changedBtn == null) {
             changedBtn = soccerDetailView.findViewById(R.id.soccerSaveNewsBtn);
         }
-        if (rssItem != null && rssItem.getId() != SoccerRssItem.INVALID_ID){
+        if (rssItem != null && rssItem.getId() != SoccerInformation.INVALID_ID){
             changedBtn.setText("remove");//change the name of button into "remove"
         }
 
         changedBtn.setOnClickListener(clk -> {
-            if (rssItem.getId() != SoccerRssItem.INVALID_ID){
+            if (rssItem.getId() != SoccerInformation.INVALID_ID){
                 removeItemFromDatabase(rssItem.getId());
             }else{
                 saveItemToDatabase(rssItem);
@@ -140,8 +140,8 @@ public class FragmentRightOfSoccer extends Fragment {
      * @param item   this is the record that be saved
      *
      */
-    private void saveItemToDatabase(SoccerRssItem item){
-        if(item.getId() == SoccerRssItem.INVALID_ID){
+    private void saveItemToDatabase(SoccerInformation item){
+        if(item.getId() == SoccerInformation.INVALID_ID){
             SoccerDbHelper db = new SoccerDbHelper(getContext());
             db.addItem(rssItem);
         }
@@ -154,5 +154,6 @@ public class FragmentRightOfSoccer extends Fragment {
     private void removeItemFromDatabase(int id){
         SoccerDbHelper db = new SoccerDbHelper(getContext());
         db.deleteItemById(String.valueOf(id));
+
     }
 }

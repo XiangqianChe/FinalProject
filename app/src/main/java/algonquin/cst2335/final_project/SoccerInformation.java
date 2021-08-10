@@ -10,7 +10,7 @@ import android.os.Parcelable;
  * @version 1.0
  * @since 2021-8-1
  */
-public class SoccerRssItem implements Parcelable {
+public class SoccerInformation implements Parcelable {
     /**
      * these variables will be used for url
      */
@@ -22,25 +22,25 @@ public class SoccerRssItem implements Parcelable {
     private String description;
     private String thumbnail;
     public static final Creator CREATOR = new Creator() {
-        public SoccerRssItem createFromParcel(Parcel in) {
-            return new SoccerRssItem(in);
+        public SoccerInformation createFromParcel(Parcel in) {
+            return new SoccerInformation(in);
         }
-    public SoccerRssItem[] newArray(int size) {
-            return new SoccerRssItem[size];
+    public SoccerInformation[] newArray(int size) {
+            return new SoccerInformation[size];
         }
     };
 
     /**
      * No-argument constructer
      */
-    public SoccerRssItem() { }
+    public SoccerInformation() { }
 
     /**
      * Constructer whose parameter is Parcel
      *
      * @param in  Parcel
      */
-    public SoccerRssItem(Parcel in){
+    public SoccerInformation(Parcel in){
         this.id = in.readInt();
         this.title = in.readString();
         this.link = in.readString();
@@ -58,7 +58,7 @@ public class SoccerRssItem implements Parcelable {
      * @param description String
      * @param thumbnail thumbnail
      */
-    public SoccerRssItem(String title, String link, String pubDate, String description, String thumbnail) {
+    public SoccerInformation(String title, String link, String pubDate, String description, String thumbnail) {
         this.id = INVALID_ID;
         this.title = title;
         this.link = link;

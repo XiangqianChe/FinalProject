@@ -44,7 +44,7 @@ import java.util.concurrent.Executors;
 public class FragmentLeftOfSoccer extends Fragment {
     private View soccerListView = null;
     private RecyclerView recyclerView = null;
-    private final List<SoccerRssItem> itemList = new ArrayList<SoccerRssItem>();
+    private final List<SoccerInformation> itemList = new ArrayList<SoccerInformation>();
     private SoccerDbHelper db;
     private String title;
     private String link;
@@ -154,7 +154,7 @@ public class FragmentLeftOfSoccer extends Fragment {
                         }
                     }
                     else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")) {
-                        itemList.add(new SoccerRssItem(title, link, publicDate, description, thumbnail));
+                        itemList.add(new SoccerInformation(title, link, publicDate, description, thumbnail));
                         insideItem = false;
                     }
                     //move to next one
@@ -187,7 +187,7 @@ public class FragmentLeftOfSoccer extends Fragment {
             }
 
             while (cursor.moveToNext()) {
-                SoccerRssItem item = new SoccerRssItem();
+                SoccerInformation item = new SoccerInformation();
                 item.setId(cursor.getInt(0));
                 item.setTitle(cursor.getString(1));
                 item.setPubDate(cursor.getString(2));
@@ -210,9 +210,9 @@ public class FragmentLeftOfSoccer extends Fragment {
      */
     class SoccerItemRecyclerViewAdapter extends RecyclerView.Adapter<SoccerItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<SoccerRssItem> mValues;
+        private final List<SoccerInformation> mValues;
 
-        SoccerItemRecyclerViewAdapter(List<SoccerRssItem> items) {
+        SoccerItemRecyclerViewAdapter(List<SoccerInformation> items) {
             mValues = items;
         }
 

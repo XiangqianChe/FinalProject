@@ -70,7 +70,7 @@ public class SoccerDbHelper extends SQLiteOpenHelper {
      *
      * @param item  SoccerRssItem
      */
-    void addItem(SoccerRssItem item){
+    void addItem(SoccerInformation item){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 

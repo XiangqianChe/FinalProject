@@ -7,9 +7,7 @@
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout_soccer"
     >
-<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ZhiqianQu"
@@ -18,7 +16,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/soccerToolbar"
         android:layout_width="match_parent"
-        android:layout_height="15dp" />
+        android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,7 +45,7 @@
         android:id="@+id/soccer_popout_menu"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-
+        app:headerLayout="@layout/popout_header"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:menu="@menu/soccer_top_bar" />
