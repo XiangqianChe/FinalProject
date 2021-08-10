@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Soccer Game</string>
+    <string name="app_name">Final_project</string>
     <string name="soccer_helper_title">How to use Soccer Game</string>
     <string name="soccer_helper">Soccer Game API Helper</string>
     <string name="soccer_usage">Click on the button of "save" can save the item ;\n\n
