@@ -3,7 +3,11 @@ package algonquin.cst2335.final_project;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
+/**
+ * this class is to do some procedures of creating or upgrading database
+ * @author Di Yu
+ * @Version 1.0
+ */
 public class BusHelper extends SQLiteOpenHelper {
     public static final String name = "TheDatabase";
     public static final int version = 1;

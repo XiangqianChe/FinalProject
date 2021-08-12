@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Final_project</string>
     <string name="stop_prompt">Stop No:</string>
+    <string name="hello_message">Hello World!</string>
+    <string name="button_message">I\'m a button</string>
+    <string name="button_message_add">add</string>
+    <string name="button_message_delete">delete</string>
+    <string name="button_message_search">search</string>
+    <string name="bus_nav_open">open</string>
+    <string name="bus_nav_close">close</string>
+    <string name="bus_help">help</string>
 </resources>

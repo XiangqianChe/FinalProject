@@ -6,14 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".DiYu">
 
-
-
         <TextView
             android:id="@+id/destination"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
             android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/startTime"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,45 +19,39 @@
             android:id="@+id/latitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="60dp"
             android:text="TextView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/destination" />
+            app:layout_constraintTop_toBottomOf="@+id/startTime" />
 
         <TextView
             android:id="@+id/longitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="86dp"
             android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/latitude"
-            app:layout_constraintTop_toTopOf="@+id/latitude" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/latitude" />
 
         <TextView
             android:id="@+id/GPSspeed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
-            app:layout_constraintEnd_toEndOf="@+id/adjustedScheduleTime"
-            app:layout_constraintStart_toStartOf="@+id/adjustedScheduleTime"
-            app:layout_constraintTop_toTopOf="@+id/longitude" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/longitude" />
 
         <TextView
             android:id="@+id/startTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="86dp"
             android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/destination"
-            app:layout_constraintTop_toTopOf="@+id/destination" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/destination" />
 
         <TextView
             android:id="@+id/adjustedScheduleTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="86dp"
             android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/startTime"
-            app:layout_constraintTop_toTopOf="@+id/startTime" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/GPSspeed" />
 </androidx.constraintlayout.widget.ConstraintLayout>

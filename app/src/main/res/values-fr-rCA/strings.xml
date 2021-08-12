@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Final_project</string>
+    <string name="stop_prompt">Arrêt non :</string>
+    <string name="button_message_add">ajouter</string>
+    <string name="button_message_delete">effacer</string>
+    <string name="button_message_search">chercher</string>
+</resources>
