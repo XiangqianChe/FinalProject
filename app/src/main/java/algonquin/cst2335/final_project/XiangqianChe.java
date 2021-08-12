@@ -6,15 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,15 +14,13 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
-
 /**
  * main activity for the charging station
  * @author Xiangqian Che
  */
 public class XiangqianChe extends AppCompatActivity {
 
-    StationFragment sf;
+    StationListFragment sf;
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
@@ -39,7 +29,7 @@ public class XiangqianChe extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.station_fragment);
+        setContentView(R.layout.station_cxq);
 
         /**
          * replace ActionBar with Toolbar
@@ -63,12 +53,11 @@ public class XiangqianChe extends AppCompatActivity {
         /**
          * fragment 1 for station list
          */
-        sf = new StationFragment();
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.fragment, sf);
-        ft.commit();
-        //getSupportFragmentManager().beginTransaction().add(R.id.fragment, new StationFragment()).commit();
+        sf = new StationListFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.frameLayout,sf)
+                .commit();
     }
 
     /**
@@ -76,9 +65,9 @@ public class XiangqianChe extends AppCompatActivity {
      * @param stationInfo
      * @param position
      */
-    public void userClickedInfo(StationFragment.StationInfo stationInfo, int position) {
-        StationDetailFragment sdf = new StationDetailFragment(stationInfo, position);
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment, sdf).commit();
+    public void userClickedInfo(StationListFragment.StationInfo stationInfo, int position, int type) {
+        StationDetailFragment sdf = new StationDetailFragment(stationInfo, position, type);
+        getSupportFragmentManager().beginTransaction().add(R.id.frameLayout, sdf).commit();
     }
 
     /**
@@ -86,7 +75,7 @@ public class XiangqianChe extends AppCompatActivity {
      * @param chosenInfo
      * @param chosenPosition
      */
-    public void notifyInfoDeleted(StationFragment.StationInfo chosenInfo, int chosenPosition) {
+    public void notifyInfoDeleted(StationListFragment.StationInfo chosenInfo, int chosenPosition) {
         sf.notifyInfoDeleted(chosenInfo, chosenPosition);
     }
 

@@ -3,13 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/layout/activity_di_yu.xml" value="0.11503623188405797" />
         <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/layout/activity_xiangqian_che.xml" value="0.22" />
         <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/layout/activity_zhe_wang.xml" value="0.1296875" />
         <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/layout/activity_zhiqian_qu.xml" value="0.1296875" />
         <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/layout/station_detail_fragment.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/layout/station_favorite_detail_fragment.xml" value="0.11503623188405797" />
         <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/layout/station_fragment.xml" value="0.1" />
         <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/layout/station_info.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/layout/station_list_fragment.xml" value="0.11503623188405797" />
         <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/layout/station_popout_header.xml" value="0.1" />
         <entry key="..\:/Users/chexq/StudioProjects/Final_Project/app/src/main/res/menu/menu_xiangqian_che.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/chexq/StudioProjects/Final_Project_zw/app/src/main/res/layout/activity_di_yu.xml" value="0.1" />

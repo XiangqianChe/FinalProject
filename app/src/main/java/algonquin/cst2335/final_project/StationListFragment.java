@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +18,6 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,14 +46,14 @@ import java.util.stream.Collectors;
  * fragment 1 for station list
  * @author Xiangqian Che
  */
-public class StationFragment extends Fragment {
+public class StationListFragment extends Fragment {
 
     EditText et_lat;
     EditText et_long;
     Button btn_search;
     RecyclerView rv_station;
     ArrayList<StationInfo> infos = new ArrayList<>();
-    ArrayList<StationFragment.StationInfo> infos_favorites = new ArrayList<>();
+    ArrayList<StationListFragment.StationInfo> infos_favorites = new ArrayList<>();
     StationAdapter adapter;
     StationAdapter adapter_favorites;
 //    OpenHelper opener;
@@ -67,7 +65,7 @@ public class StationFragment extends Fragment {
         /**
          * views in activity_xiangqian_che.xml
          */
-        View stationLayout = inflater.inflate(R.layout.activity_xiangqian_che, container, false);
+        View stationLayout = inflater.inflate(R.layout.station_list_fragment, container, false);
         et_lat = stationLayout.findViewById(R.id.et_lat);
         et_long = stationLayout.findViewById(R.id.et_long);
         btn_search = stationLayout.findViewById(R.id.btn_search);
@@ -105,8 +103,8 @@ public class StationFragment extends Fragment {
         /**
          * put infos into recycler view
          */
-        adapter = new StationAdapter(infos);
-        adapter_favorites = new StationAdapter(infos_favorites);
+        adapter = new StationAdapter(infos,RowView.SEARCH);
+        adapter_favorites = new StationAdapter(infos_favorites,RowView.FAVORITE);
         rv_station.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
         /**
@@ -261,18 +259,20 @@ public class StationFragment extends Fragment {
      * rows in recycler view
      */
     private class RowView extends RecyclerView.ViewHolder {
+        static final int SEARCH=0;
+        static final int FAVORITE=1;
 
         TextView info_title;
-
+        int type;
         int position = -1;
 
-        public RowView(View itemView, List<StationInfo> infos) {
+        public RowView(View itemView, List<StationInfo> infos, int type) {
             super(itemView);
-
+            this.type=type;
             itemView.setOnClickListener(click->{
                 XiangqianChe parentActivity = (XiangqianChe)getContext();
                 int position = getAbsoluteAdapterPosition();
-                parentActivity.userClickedInfo(infos.get(position), position);
+                parentActivity.userClickedInfo(infos.get(position), position,type);
             });
 
             info_title = itemView.findViewById(R.id.info_title);
@@ -288,15 +288,18 @@ public class StationFragment extends Fragment {
      */
     class StationAdapter extends RecyclerView.Adapter<RowView> {
         List<StationInfo> infos;
-        StationAdapter(List<StationInfo> infos){
+        int type;
+
+        StationAdapter(List<StationInfo> infos, int type){
             this.infos=infos;
+            this.type=type;
         }
 
         @Override
         public RowView onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = getLayoutInflater();
             View loadedRow = inflater.inflate(R.layout.station_info, parent, false);
-            return new RowView(loadedRow, infos);
+            return new RowView(loadedRow, infos,type);
         }
 
         @Override
