@@ -9,4 +9,18 @@
     <string name="bus_nav_open">open</string>
     <string name="bus_nav_close">close</string>
     <string name="bus_help">help</string>
+    <string name="soccer_helper_title">How to use Soccer Game</string>
+    <string name="soccer_helper">Soccer Game API Helper</string>
+    <string name="soccer_usage">Click on the button of "save" can save the item ;\n\n
+    Click on the button of "saved records" can look through the records that you saved;\n\n
+        click on the "Open " button can open the browser to see more details;\n\n
+        click on the button "remove" when you see the saved records to delete record
+    </string>
+    <string name="soccer_rating_text">please rate us</string>
+    <string name="soccer_open_url_button_text">Open</string>
+
+    <string name="soccer_save_news_button_text">Save</string>
+
+    <string name="open">1</string>
+    <string name="close">0</string>
 </resources>
